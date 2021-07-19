@@ -31,6 +31,8 @@ namespace GastosAPI
             services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(Configuration.GetConnectionString("MongoDb")));
             services.AddTransient<IUser, UserRepository>();
             services.AddTransient<IAccount, AccountRepository>();
+            services.AddTransient<ITransaction, TransactionRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GastosAPI", Version = "v1" });

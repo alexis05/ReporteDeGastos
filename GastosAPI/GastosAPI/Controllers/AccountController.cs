@@ -38,17 +38,17 @@ namespace GastosAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            var car = await _accountRepository.Get(id);
+            var result = await _accountRepository.Get(id);
 
-            return new JsonResult(car);
+            return new JsonResult(result);
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var cars = await _accountRepository.Get();
+            var result = await _accountRepository.Get();
 
-            return new JsonResult(cars);
+            return new JsonResult(result);
         }
     }
 
