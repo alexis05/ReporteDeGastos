@@ -5,9 +5,9 @@ namespace GastosAPI.Core
     {
 
         private string name;
-        private User supervisor;
+        private Account supervisor;
 
-        internal Department(string name, User supervisor)
+        internal Department(string name, Account supervisor)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new Exception("The name of the department is required.");
             if (supervisor == null) throw new Exception("The supervisor is required");
@@ -23,7 +23,7 @@ namespace GastosAPI.Core
             this.name = name;
         }
 
-        internal void ChangeSupervisor(User newSupervisor)
+        internal void ChangeSupervisor(Account newSupervisor)
         {
             if (newSupervisor == null) throw new Exception("The new supervisor is required");
 
@@ -38,7 +38,7 @@ namespace GastosAPI.Core
             }
         }
 
-        public User Supervisor
+        public Account Supervisor
         {
             get
             {

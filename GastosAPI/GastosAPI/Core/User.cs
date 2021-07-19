@@ -7,7 +7,7 @@ namespace GastosAPI.Core
 
     public class User
     {
-        internal enum Position
+        public enum Position
         {
             None,
             Accounting,
@@ -18,12 +18,13 @@ namespace GastosAPI.Core
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Uuid { get; set; }
-        public int id;
-        private string first_name;
-        private string last_name;
-        private Position position = Position.None;
+        public int Id { get; set; }
+        public string first_name;
+        public string last_name;
+        public Position position = Position.None;
+        public DateTime created;
 
-        internal User(string first_name, string last_name, int id, Position position)
+        internal User(string first_name, string last_name, int id)
         {
             if (string.IsNullOrWhiteSpace(first_name)) throw new Exception("The first name is required.");
             if (string.IsNullOrWhiteSpace(last_name)) throw new Exception("The last name is required.");
@@ -31,8 +32,9 @@ namespace GastosAPI.Core
 
             this.first_name = first_name;
             this.last_name = last_name;
-            this.id = id;
-            this.position = position;
+            this.Id = id;
+            this.position = Position.None;
+            this.created = DateTime.Now;
         }
 
         public string FirstName
@@ -59,11 +61,11 @@ namespace GastosAPI.Core
             }
         }
 
-        public int Id
+        public DateTime Created
         {
             get
             {
-                return this.id;
+                return this.created;
             }
         }
 
