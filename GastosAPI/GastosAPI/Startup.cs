@@ -27,6 +27,13 @@ namespace GastosAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsApi",
+                    builder => builder.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+            });
             services.AddControllers();
             services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(Configuration.GetConnectionString("MongoDb")));
             services.AddTransient<IUser, UserRepository>();
@@ -50,6 +57,7 @@ namespace GastosAPI
             }
 
             app.UseRouting();
+            app.UseCors("CorsApi");
 
             app.UseAuthorization();
 

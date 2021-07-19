@@ -4,12 +4,14 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using GastosAPI.Core;
 using GastosAPI.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 
 namespace GastosAPI.Controllers
 {
     [ApiController]
+    [EnableCors("CorsApi")]
     [Route("api/transactions")]
     public class TransactionController : ControllerBase
     {
